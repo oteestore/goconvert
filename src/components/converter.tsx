@@ -27,8 +27,7 @@ export function Converter() {
     
     // Update the timestamp
     const now = new Date();
-    setLastUpdated(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' ' + 
-                  Intl.DateTimeFormat().resolvedOptions().timeZone);
+    setLastUpdated(now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
   }, [category, fromUnit, toUnit, value]);
 
   return (
@@ -90,13 +89,13 @@ export function Converter() {
               <span className="text-xl font-bold text-gray-900">
                 {value} {findUnit(category, fromUnit)?.symbol} = 
               </span>
-              <span className="ml-2 text-2xl font-bold text-gray-900">
+              <span className="ml-2 text-xl font-bold text-gray-900">
                 {result} {findUnit(category, toUnit)?.symbol}
               </span>
             </div>
             {lastUpdated && (
               <span className="text-xs text-gray-500">
-                Last updated at {lastUpdated}
+                Updated {lastUpdated}
               </span>
             )}
           </div>
