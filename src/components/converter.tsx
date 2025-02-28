@@ -7,6 +7,7 @@ import { formatNumber } from '../lib/utils';
 export function Converter() {
   const { category, fromUnit, toUnit, value, setFromUnit, setToUnit, setValue } = useConversionStore();
   const [result, setResult] = useState<string>('');
+  const [lastUpdated, setLastUpdated] = useState<string>('');
   
   const currentCategory = getCategory(category);
   
@@ -23,6 +24,11 @@ export function Converter() {
     
     const converted = convert(numValue, from, to);
     setResult(formatNumber(converted));
+    
+    // Update the timestamp
+    const now = new Date();
+    setLastUpdated(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' ' + 
+                  Intl.DateTimeFormat().resolvedOptions().timeZone);
   }, [category, fromUnit, toUnit, value]);
 
   return (
@@ -78,13 +84,22 @@ export function Converter() {
       </div>
       
       {result && (
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <p className="text-center">
-            <span className="text-lg font-medium">{result}</span>
-            <span className="ml-2 text-gray-600">
-              {findUnit(category, toUnit)?.symbol}
-            </span>
-          </p>
+        <div className="mt-6 rounded-xl border border-green-200 bg-green-50 overflow-hidden">
+          <div className="p-4 flex justify-between items-center">
+            <div className="flex items-baseline">
+              <span className="text-xl font-bold text-gray-900">
+                {value} {findUnit(category, fromUnit)?.symbol} = 
+              </span>
+              <span className="ml-2 text-2xl font-bold text-gray-900">
+                {result} {findUnit(category, toUnit)?.symbol}
+              </span>
+            </div>
+            {lastUpdated && (
+              <span className="text-xs text-gray-500">
+                Last updated at {lastUpdated}
+              </span>
+            )}
+          </div>
         </div>
       )}
     </div>
