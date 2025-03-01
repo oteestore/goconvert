@@ -1,12 +1,13 @@
 import { useConversionStore } from '../lib/store';
 import { categories } from '../lib/conversions';
-import { Ruler, Thermometer, Scale } from 'lucide-react';
+import { Ruler, Thermometer, Scale, Clock } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const iconMap = {
   ruler: Ruler,
   thermometer: Thermometer,
   scale: Scale,
+  clock: Clock,
 };
 
 export function CategorySelector() {

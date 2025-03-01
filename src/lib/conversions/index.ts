@@ -54,6 +54,22 @@ export const categories: Category[] = [
       { name: 'atomic mass units', symbol: 'u', ratio: 1.66053886e-27 },
     ],
   },
+  {
+    name: 'time',
+    icon: 'clock',
+    units: [
+      { name: 'seconds', symbol: 's', ratio: 1 },
+      { name: 'minutes', symbol: 'min', ratio: 60 },
+      { name: 'hours', symbol: 'h', ratio: 3600 },
+      { name: 'days', symbol: 'd', ratio: 86400 },
+      { name: 'weeks', symbol: 'week', ratio: 604800 },
+      { name: 'months', symbol: 'month', ratio: 2592000 }, // Approximate to 30 days
+      { name: 'years', symbol: 'year', ratio: 31536000 }, // Approximate to 365 days
+      { name: 'milliseconds', symbol: 'ms', ratio: 0.001 },
+      { name: 'microseconds', symbol: 'µs', ratio: 0.000001 },
+      { name: 'nanoseconds', symbol: 'ns', ratio: 0.000000001 },
+    ],
+  },
 ];
 
 export function convert(value: number, from: Unit, to: Unit): number {
