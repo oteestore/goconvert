@@ -78,12 +78,10 @@ export function Converter() {
       </div>
       
       {result && (
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <p className="text-center">
-            <span className="text-lg font-medium">{result}</span>
-            <span className="ml-2 text-gray-600">
-              {findUnit(category, toUnit)?.symbol}
-            </span>
+        <div className="mt-6 p-4 bg-gradient-to-r from-green-200 to-green-500 rounded-xl">
+          <p className="text-center text-2xl font-bold">
+            <span>{value} {findUnit(category, fromUnit)?.symbol} = </span>
+            <span>{result} {findUnit(category, toUnit)?.symbol}</span>
           </p>
         </div>
       )}
